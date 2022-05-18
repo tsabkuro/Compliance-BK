@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A professional bookkeeping service to help manage your money.">
+    <meta name="keywords" content="bookkeeper, bookkeeping, money, accounting, accountant, business, finance">
+    <meta name="author" content="John Doe">
+    <title>Compliance Bookkeeping</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://kit.fontawesome.com/6bc893be3a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="background">
+        <!-- Computer Nav -->
+        <div class="navbar">
+            <div class="container flex">
+                <h1 class="logo"><span class="third-clr">Compliance</span> <span class="secondary">Bookkeeping</span>
+                </h1>
+                <nav class="nav">
+                    <ul>
+                        <li class="secondary">Doe@mail.com</li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#contact" class="btn-special">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="mobile secondary">
+                    Doe@mail.com
+                </div>
+            </div>
+        </div>
+
+        <!-- Showcase -->
+        <section id="showcase">
+            <div class="container">
+                <h1>Your virtual bookkeeper helping you manage your money.</h1>
+                <p>
+                    No entrepreneur gets into business to spend more time on bookkeeping than is necessary. Let me take care of it, so you can focus on running your business stress-free.
+                    <br>
+                    With many other challenges, sometime a business owner faces difficulties controlling their firm’s finances. But don’t worry – help is on its way!
+                </p>
+                <div class="nav-secondary flex">
+                    <a href="#contact" class="btn-cta">Contact</a>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <section class="hero">
+        <h2>Let's put you in control of your firm's finance.</h2>
+        <div class="container grid">
+            <div class="card">
+                <i class="fas fa-book-open"></i>
+                <h3>Stress-free bookkeeping</h3>
+                <p>
+                    We will take care of debits & credits so that you have your business financials without hassle.
+                </p>
+            </div>
+            <div class="card">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <h3>Fixed Fee</h3>
+                <p>A fixed fee will be arranged based on your specific needs with no surprise fees added on.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-phone-square-alt"></i>
+                <h3>Support</h3>
+                <p>
+                    I am always a click or phone call away. Unlimited support is included with all service plans.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>Helping Small Businesses</h2>
+            <p>
+                Hi, my name is John Doe. If you want to stay on top of your finances, you have come to the right place. With years of experience in accounting & finance, I will take care of your financial books, so that you can focus on running your business stress-free. Let’s talk – I would love to listen to your needs.
+            </p>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container">
+            <h2>FAQ</h2>
+
+            <h3>What exactly can I expect?</h3>
+            <p>Services include posting transactions, dealing with your banking and bills records, reconciling accounts, and producing financial reports for your firm every month. I will also go over your financial numbers and help you understand story behind them.</p>
+
+            <h3>How do we interact?</h3>
+            <p>We will use cloud resources to securely exchange documents and account for transactions, to deliver quality bookkeeping services. No need to store data on a desktop and worry about backups and IT updates.</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        {% for category, message in get_flashed_messages(with_categories=true) %}
+            <div class="alert {{ category }}"> {{ message|capitalize }} </div>
+        {% endfor %}
+        <form class="form form-item" action="" method="POST">
+            <h2>Contact</h2>
+
+            <div class="form-element">
+                <div class="mb-05">{{ form.name.label() }}</div>
+                {{ form.name() }}
+            </div>
+            <div class="form-element">
+                <div class="mb-05">{{ form.email.label() }}</div>
+
+					{% if form.email.errors %}
+                        {{ form.email(class="is-invalid") }}
+                        <div class="error">
+                            <i class="fas fa-exclamation"></i>
+						    <div class="invalid-feedback">
+							    {% for error in form.email.errors %}
+							    	<span>{{ error }}</span>
+							    {% endfor %}
+						    </div>
+                        </div>
+					{% else %}
+						{{ form.email() }}
+                    {% endif %}
+            </div>
+            <div class="form-element">
+                <div class="mb-05">{{ form.phone.label() }}</div>
+
+					{% if form.phone.errors %}
+                        {{ form.phone(class="is-invalid") }}
+                        <div class="error">
+                            <i class="fas fa-exclamation"></i>
+						    <div class="invalid-feedback">
+						    	{% for error in form.phone.errors %}
+						    		<span>{{ error }}</span>
+						    	{% endfor %}
+                            </div>
+                        </div>
+					{% else %}
+						{{ form.phone() }}
+					{% endif %}
+            </div>
+            <div class="form-element">
+                <div class="mb-05">{{ form.message.label() }}</div>
+
+					{% if form.message.errors %}
+                        {{ form.message(class="is-invalid") }}
+                        <div class="error">
+                            <i class="fas fa-exclamation"></i>
+						    <div class="invalid-feedback">
+						    	{% for error in form.message.errors %}
+						    		<span>{{ error }}</span>
+						    	{% endfor %}
+                            </div>
+                        </div>
+					{% else %}
+						{{ form.message() }}
+					{% endif %}
+            </div>
+            <p class="check"><input type="text" name="url" /></p>
+            <div class="form-element">
+                <button type="submit" class="submit" name="submit">Submit</button>
+            </div>
+        </form>
+    </section>
+
+    <footer>
+        <div class="container grid">
+            <img src="../static/images/quickbookslogo.jpg" alt="quickbooks">
+            <img src="../static/images/cosmolex.png" alt="cosmolex">
+        </div>
+    </footer>
+</body>
+
+</html>
